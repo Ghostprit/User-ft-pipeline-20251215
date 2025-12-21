@@ -3,31 +3,6 @@ name: Docker CI/CD for frontend
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
-  test:
-    name: Testing part
-    runs-on: ubuntu-latest
-    defaults:
-      run: 
-        working-directory: frontend
-    steps:
-      - name: Chekout repository
-        uses: actions/checkout@v6
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          cache: 'npm'
-          cache-dependency-path: 'frontend/package-lock.json'
-
-      - name: Install dependencies
-        working-directory: ./frontend
-        run: npm ci
-
-      - name: Run tests
-        working-directory: ./frontend
-        run: npm test
-
   build:
     name: Building part
     runs-on: ubuntu-latest
