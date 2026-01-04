@@ -62,4 +62,4 @@ jobs:
           push: true
           tags: |
             ${{ vars.DOCKERUSER }}/devopsua6-pub:${{ github.sha }}
-            ${{ vars.DOCKERUSER }}/devopsua6-pub:sha-${{ github.sha::7 }}
+            ${{ vars.DOCKERUSER }}/devopsua6-pub:sha-${{ github.sha }}
