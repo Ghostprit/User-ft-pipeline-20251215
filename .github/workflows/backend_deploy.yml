@@ -1,6 +1,13 @@
 name: Docker CI/CD for backend
 
-on: [push, pull_request, workflow_dispatch]
+on: 
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   test:
@@ -10,7 +17,7 @@ jobs:
       run: 
         working-directory: backend
     steps:
-      - name: Chekout repository
+      - name: Checkout repository
         uses: actions/checkout@v6
 
       - name: Setup Node.js
@@ -29,13 +36,14 @@ jobs:
         run: npm test
 
   build:
+    needs: test
     name: Building part
     runs-on: ubuntu-latest
     defaults:
       run: 
-        working-directory: 22 (2025-12-16)/backend
+        working-directory: backend
     steps:
-      - name: Chekout repository
+      - name: Checkout repository
         uses: actions/checkout@v6
 
       - name: Setting up Docker builder
@@ -53,5 +61,5 @@ jobs:
           context: ./backend
           push: true
           tags: |
-            ${{ vars.DOCKERUSER }}/devopsua6-pub:latest
             ${{ vars.DOCKERUSER }}/devopsua6-pub:${{ github.sha }}
+            ${{ vars.DOCKERUSER }}/devopsua6-pub:sha-${{ github.sha::7 }}
