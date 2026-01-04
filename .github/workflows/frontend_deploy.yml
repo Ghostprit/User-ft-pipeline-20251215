@@ -31,7 +31,6 @@ jobs:
         working-directory: ./frontend
         run: npm test
 
-  workflow_d
   build:
     name: Building part
     runs-on: ubuntu-latest
