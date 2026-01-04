@@ -2,11 +2,7 @@ name: Docker CI/CD for frontend
 
 on:
   push:
-    branches:
-      - main
   pull_request:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
@@ -35,6 +31,7 @@ jobs:
         working-directory: ./frontend
         run: npm test
 
+  workflow_d
   build:
     name: Building part
     runs-on: ubuntu-latest
